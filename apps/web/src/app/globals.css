@@ -200,7 +200,8 @@ a {
   position: relative;
   padding: 10px 0;
   color: #aeb2a4;
-  font-size: 12px;
+  font-size: 13px;
+  font-weight: 500;
   transition: color 200ms ease;
 }
 
@@ -2171,5 +2172,295 @@ a {
 
   .product-card:hover .product-image::before {
     animation: none !important;
+  }
+}
+/* Add this to apps/web/src/app/globals.css.
+   Keep your existing styles; append these rules at the end. */
+
+.sell-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  overflow-y: auto;
+  background: rgba(3, 5, 3, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  animation: minx-backdrop-in 180ms ease-out;
+}
+
+.sell-modal {
+  position: relative;
+  width: min(100%, 560px);
+  max-height: min(88dvh, 900px);
+  overflow-y: auto;
+  margin: auto;
+  padding: 32px;
+  color: #f5f7ef;
+  background:
+    radial-gradient(ellipse at top right, rgba(164, 255, 0, 0.11), transparent 45%),
+    #10130e;
+  border: 1px solid rgba(176, 255, 0, 0.28);
+  border-radius: 24px;
+  box-shadow: 0 28px 100px rgba(0, 0, 0, 0.65);
+  animation: minx-modal-in 220ms ease-out;
+}
+
+.sell-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  color: #f5f7ef;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.sell-modal-close:hover {
+  color: #111;
+  background: #a4ff00;
+}
+
+.sell-modal-eyebrow {
+  margin: 0 0 10px;
+  color: #a4ff00;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+}
+
+.sell-modal h2 {
+  margin: 0;
+  padding-right: 36px;
+  font-size: clamp(26px, 4vw, 36px);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.045em;
+}
+
+.sell-modal-description {
+  margin: 12px 0 24px;
+  color: #a6ab9d;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.sell-form {
+  display: grid;
+  gap: 17px;
+}
+
+.sell-form > label,
+.sell-form-row > label {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+  color: #e8ecdf;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.sell-form input,
+.sell-form select,
+.sell-form textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: 13px 14px;
+  color: #f5f7ef;
+  background: #171b14;
+  border: 1px solid #30372a;
+  border-radius: 11px;
+  outline: none;
+  font: inherit;
+  font-size: 14px;
+}
+
+.sell-form input:focus,
+.sell-form select:focus,
+.sell-form textarea:focus {
+  border-color: #a4ff00;
+  box-shadow: 0 0 0 3px rgba(164, 255, 0, 0.1);
+}
+
+.sell-form input[type="file"] {
+  padding: 10px;
+  font-size: 12px;
+}
+
+.sell-form input[type="file"]::file-selector-button {
+  margin-right: 12px;
+  padding: 8px 10px;
+  color: #111;
+  background: #a4ff00;
+  border: 0;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.sell-form select option {
+  color: #f5f7ef;
+  background: #171b14;
+}
+
+.sell-form textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+.sell-form small {
+  color: #92998a;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.sell-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.sell-form-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 49px;
+  margin-top: 4px;
+  padding: 13px 18px;
+  color: #10130b;
+  background: #a4ff00;
+  border: 0;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background 160ms ease, transform 160ms ease;
+}
+
+.sell-form-submit:hover {
+  background: #bcff4d;
+  transform: translateY(-1px);
+}
+
+.sell-form-submit:disabled {
+  opacity: 0.65;
+  cursor: wait;
+  transform: none;
+}
+
+.sell-form-message {
+  margin: 0;
+  padding: 12px 14px;
+  color: #c8ff81;
+  background: rgba(164, 255, 0, 0.08);
+  border: 1px solid rgba(164, 255, 0, 0.2);
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.sell-form-footnote {
+  margin: 0;
+  color: #8f9685;
+  font-size: 11px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+@keyframes minx-backdrop-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes minx-modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 600px) {
+  .sell-modal-backdrop {
+    align-items: flex-end;
+    padding: 10px;
+  }
+
+  .sell-modal {
+    width: 100%;
+    max-height: 92dvh;
+    padding: 25px 18px;
+    border-radius: 22px 22px 16px 16px;
+  }
+
+  .sell-form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sell-modal-backdrop,
+  .sell-modal {
+    animation: none;
+  }
+}
+/* MINX Account / Log out Button */
+.account-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #f5f5f5;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.account-button:hover:not(:disabled) {
+  background: rgba(124, 255, 0, 0.1);
+  border-color: #7cff00;
+  color: #7cff00;
+  transform: translateY(-1px);
+}
+
+.account-button:focus-visible {
+  outline: 2px solid #7cff00;
+  outline-offset: 3px;
+}
+
+.account-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .account-button {
+    gap: 6px;
+    padding: 9px 11px;
+    font-size: 12px;
   }
 }
